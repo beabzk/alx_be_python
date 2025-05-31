@@ -1,30 +1,27 @@
 task = input("Enter your task: ")
-priority = input("Priority (high/medium/low): ").lower() # Convert to lowercase for easier comparison
-time_bound_input = input("Is it time-bound? (yes/no): ").lower() # Convert to lowercase
-
-# Determine if time_bound based on input
-time_bound = True if time_bound_input == "yes" else False
+priority = input("Priority (high/medium/low): ").lower()
+time_bound = input("Is it time-bound? (yes/no): ").lower()
 
 reminder_message = ""
 
 match priority:
     case "high":
-        if time_bound:
+        if time_bound == "yes":
             reminder_message = f"Reminder: '{task}' is a high priority task that requires immediate attention today!"
         else:
-            reminder_message = f"Reminder: '{task}' is a high priority task." # Fallback if not explicitly defined for non-time-bound high
+            reminder_message = f"Reminder: '{task}' is a high priority task."
     case "medium":
-        if time_bound:
+        if time_bound == "yes": # Matches pattern
             reminder_message = f"Reminder: '{task}' is a medium priority task that requires immediate attention today!"
         else:
-            reminder_message = f"Reminder: '{task}' is a medium priority task." # Fallback
+            reminder_message = f"Reminder: '{task}' is a medium priority task."
     case "low":
-        if time_bound:
-            # The example for low and time-bound isn't given, but we can infer a similar structure
+        if time_bound == "yes": # Matches pattern
             reminder_message = f"Reminder: '{task}' is a low priority task that requires immediate attention today!"
-        else:
+        else: # This implies time_bound is "no" or something else
             reminder_message = f"Note: '{task}' is a low priority task. Consider completing it when you have free time."
     case _:
-        reminder_message = "Invalid priority level entered. Please choose high, medium, or low."
+        print("Invalid priority level entered. Please choose high, medium, or low.")
+        exit() # Exit if priority is invalid to avoid printing an empty reminder_message
 
 print(reminder_message)
