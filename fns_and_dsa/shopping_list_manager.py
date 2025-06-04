@@ -1,5 +1,5 @@
 def display_menu():
-    print("\nShopping List Manager")
+    print("Shopping List Manager")
     print("1. Add Item")
     print("2. Remove Item")
     print("3. View List")
@@ -9,7 +9,7 @@ def main():
     shopping_list = []
     while True:
         display_menu()
-        choice = input("Enter your choice (1-4): ").strip()
+        choice = input("Enter your choice: ")
 
         if choice == '1':
             item = input("Enter the item to add: ").strip()
@@ -24,7 +24,7 @@ def main():
                 shopping_list.remove(item_to_remove)
                 print(f"'{item_to_remove}' removed from the list.")
             else:
-                print(f"'{item_to_remove}' not found in the list.")
+                print(f"Item '{item_to_remove}' not found in the list.")
         elif choice == '3':
             if not shopping_list:
                 print("The shopping list is currently empty.")
