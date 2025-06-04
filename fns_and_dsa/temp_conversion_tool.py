@@ -6,14 +6,12 @@ OFFSET = 32 # The offset used in temperature conversions
 
 def convert_to_celsius(fahrenheit):
     """Converts Fahrenheit to Celsius using global factors."""
-    # Celsius = (Fahrenheit - OFFSET) * FAHRENHEIT_TO_CELSIUS_FACTOR
-    celsius = (fahrenheit - OFFSET) * FAHRENHEIT_TO_CELSIUS_FACTOR
+    celsius = (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
     return celsius
 
 def convert_to_fahrenheit(celsius):
     """Converts Celsius to Fahrenheit using global factors."""
-    # Fahrenheit = (Celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + OFFSET
-    fahrenheit = (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + OFFSET
+    fahrenheit = celsius * CELSIUS_TO_FAHRENHEIT_FACTOR + 32
     return fahrenheit
 
 def main():
@@ -21,8 +19,6 @@ def main():
         temp_str = input("Enter the temperature to convert: ")
         temperature = float(temp_str)
     except ValueError:
-        # "raise an error 'Invalid temperature. Please enter a numeric value.'"
-        # Interpreted as printing an error message to the user, not raising a Python exception.
         print("Error: Invalid temperature. Please enter a numeric value.")
         return # Exit the function
 
