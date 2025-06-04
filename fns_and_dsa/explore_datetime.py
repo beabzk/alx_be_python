@@ -1,38 +1,45 @@
-import datetime
+from datetime import datetime, timedelta
 
 def display_current_datetime():
     """
     Displays the current date and time formatted.
+    Saves the formatted current date and time string in the 'current_date' variable.
     """
-    current_datetime_obj = datetime.datetime.now()
-    # Save the current date and time in a variable (though it's used immediately for formatting)
-    current_date_and_time_str = current_datetime_obj.strftime("%Y-%m-%d %H:%M:%S")
-    print(f"Current date and time: {current_date_and_time_str}")
-    return current_datetime_obj # Return the object for potential further use if needed
+    current_datetime_obj = datetime.now()
+    # Requirement: "save the current date inside a current_date variable"
+    # Requirement: "Format and print the current date and time in a readable format, such as “YYYY-MM-DD HH:MM:SS”."
+    # So, 'current_date' variable should hold this formatted string.
+    current_date = current_datetime_obj.strftime("%Y-%m-%d %H:%M:%S")
+    print(f"Current date and time: {current_date}")
 
 def calculate_future_date():
     """
-    Prompts the user for a number of days and calculates a future date.
+    Prompts for a number of days, calculates the future date,
+    prints it, and returns the formatted future date string.
+    Saves the formatted future date string in the 'future_date' variable.
     """
-    current_date_obj = datetime.datetime.now().date() # Get current date part
+    current_datetime_for_calc = datetime.now() # Use current datetime for calculation
 
     while True:
         try:
             number_of_days_str = input("Enter the number of days to add to the current date: ")
             number_of_days = int(number_of_days_str)
-            if number_of_days < 0:
+            if number_of_days < 0: # Added basic validation
                 print("Please enter a non-negative number of days.")
                 continue
             break
         except ValueError:
             print("Invalid input. Please enter an integer for the number of days.")
 
-    time_delta = datetime.timedelta(days=number_of_days)
-    future_date_obj = current_date_obj + time_delta
-    # Save the future date in a variable (though it's used immediately for formatting)
-    future_date_str = future_date_obj.strftime("%Y-%m-%d")
-    print(f"Future date: {future_date_str}")
-    return future_date_obj # Return the object for potential further use
+    time_delta_obj = timedelta(days=number_of_days)
+    future_datetime_obj = current_datetime_for_calc + time_delta_obj
+    
+    # Requirement: "saves the future date inside a future_date variable"
+    # Requirement: "Print the future date in a format like 'YYYY-MM-DD'."
+    # So, 'future_date' variable should hold this formatted string.
+    future_date = future_datetime_obj.strftime("%Y-%m-%d")
+    print(f"Future date: {future_date}")
+    return future_date # Added return for "Checks to return the formatted date"
 
 def main():
     display_current_datetime()
